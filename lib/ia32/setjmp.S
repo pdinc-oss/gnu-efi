@@ -14,7 +14,7 @@ BASIS,
  */
 	.text
 	.globl	setjmp
-#ifndef __MINGW32__
+#if !(defined(__MINGW32__)||defined(__CYGWIN__))
 	.type setjmp, @function
 #else
 	.def setjmp; .scl 2; .type 32; .endef
@@ -31,7 +31,7 @@ setjmp:
 	jmp	*%ecx
 
 	.globl	longjmp
-#ifndef __MINGW32__
+#if !(defined(__MINGW32__)||defined(__CYGWIN__))
 	.type	longjmp, @function
 #else
 	.def longjmp; .scl 2; .type 32; .endef

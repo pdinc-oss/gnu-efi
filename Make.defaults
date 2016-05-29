@@ -141,7 +141,11 @@ INCDIR  += -I$(SRCDIR) -I$(TOPDIR)/inc -I$(TOPDIR)/inc/$(ARCH) \
 
 # Only enable -fpic for non MinGW compilers (unneeded on MinGW)
 GCCMACHINE := $(shell $(CC) -dumpmachine)
-ifneq (mingw32,$(findstring mingw32, $(GCCMACHINE)))
+ifeq (mingw32,$(findstring mingw32, $(GCCMACHINE)))
+  CFLAGS += 
+else ifeq (cygwin,$(findstring cygwin, $(GCCMACHINE)))
+  CFLAGS += 
+else
   CFLAGS += -fpic
 endif
 
