@@ -113,6 +113,11 @@ containing this README file).  This should build lib/libefi.a and
 gnuefi/libgnuefi.a first and then all the EFI applications such as a
 apps/t6.efi.
 
+On Cygwin64, the x86_64 library will be installed in lib. When building 
+x86_64 be sure to have a symbolic link from lib64 to lib. The ia32 
+library will be installed in lib32.
+
+On Cygwin (32 bit), x86_64 building is not supported.
 
 ** Running
 
@@ -348,6 +353,7 @@ command:
 
 assuming "example" is the name of the desired EFI application.
 
+On Cygwin the linker uses PE format, not ELF.
 
 ** (3) Creating the Function Descriptor for the IA-64 EFI Binaries
 

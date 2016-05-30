@@ -66,7 +66,7 @@ OBJS  = $(FILES:%=%.o)
 
 SUBDIRS = ia32 x86_64 ia64 aarch64 arm runtime
 
-LIBDIRINSTALL = $(INSTALLROOT)$(LIBDIR)
+LIBDIRINSTALL = $(INSTALLROOT:/=)$(LIBDIR)
 
 all: libsubdirs libefi.a
 

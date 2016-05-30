@@ -46,7 +46,7 @@ TOPDIR := $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi)
 # lib and include under the root
 #
 INSTALLROOT  := /
-PREFIX       := /usr/local
+PREFIX       ?= /usr/local
 LIBDIR 	     := $(PREFIX)/lib
 INSTALL	     := install
 
@@ -145,6 +145,13 @@ ifeq (mingw32,$(findstring mingw32, $(GCCMACHINE)))
   CFLAGS += 
 else ifeq (cygwin,$(findstring cygwin, $(GCCMACHINE)))
   CFLAGS += 
+
+  ifneq ($(ARCH),$(HOSTARCH))
+    ifeq ($(ARCH),ia32)
+      LIBDIR:=$(PREFIX)/lib32
+    endif
+  endif
+
 else
   CFLAGS += -fpic
 endif
